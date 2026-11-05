@@ -1,0 +1,93 @@
+#
+# OpenCreative++ — цветной чат, цветные таблички и фильтр слов.
+#
+# Формат строк чата (префиксы, вид сообщений) задаётся в config.yml → messages.
+#
+# Коды цветов:
+#   &0-&9, &a-&f  — цвета          (&a зелёный, &c красный, &e жёлтый, &b голубой...)
+#   &l &o &n &m   — жирный, курсив, подчёркнутый, зачёркнутый
+#   &k            — «шумящий» текст
+#   &r            — сброс
+#   &#RRGGBB      — любой цвет HEX, например &#ff8800
+#
+chat:
+  # Цвета в чате (в мире и в глобальном /cc).
+  messages:
+    # Разрешить коды &a..&f. Право: opencreativepp.chat.color (по умолчанию есть у всех).
+    colors: true
+    # Разрешить HEX &#RRGGBB. Право: opencreativepp.chat.hex (по умолчанию есть у всех).
+    hex: true
+    # Разрешить &l &o &n &m. Право: opencreativepp.chat.format (по умолчанию есть у всех).
+    formats: true
+    # Разрешить &k. Право: opencreativepp.chat.obfuscated (по умолчанию только у OP).
+    obfuscated: true
+
+  # Цвета на табличках (обе стороны).
+  signs:
+    # Коды &a..&f. Право: opencreativepp.sign.color (по умолчанию есть у всех).
+    colors: true
+    # HEX &#RRGGBB. Право: opencreativepp.sign.hex (по умолчанию есть у всех).
+    hex: true
+    # &l &o &n &m. Право: opencreativepp.sign.format (по умолчанию есть у всех).
+    formats: true
+    # &k. Право: opencreativepp.sign.obfuscated (по умолчанию только у OP).
+    obfuscated: true
+    # При повторном редактировании таблички показывать коды (&a...), а не готовый цвет,
+    # чтобы игрок мог их поправить.
+    show-codes-on-edit: true
+
+#
+# Фильтр запрещённых слов: чат, таблички, переименование на наковальне, книги.
+# Сами слова (регулярные выражения) лежат в filter.yml, здесь — что с ними делать.
+#
+filter:
+  # Правила из filter.yml
+  rules:
+    swearing:
+
+      # Проверять сообщения в чате.
+      check-chat: true
+
+      # Проверять текст на табличках.
+      check-signs: true
+
+      # Проверять имена предметов с наковальни.
+      check-anvils: true
+
+      # Проверять книги.
+      check-books: true
+
+      # Писать игроку «Не используй плохие слова!».
+      warn-player: true
+
+      # Уведомлять модераторов о нарушении.
+      notify-staff: true
+
+      # Что делать с сообщением в чате (только чат, не таблички/наковальня/книги):
+      #
+      # full          — заменить всё сообщение символом       (Я люблю котов -> #############)
+      # spaces        — заменить всё, но оставить пробелы     (Я люблю котов -> # ##### #####)
+      # cover-words   — закрыть только плохие слова           (Я люблю котов -> Я люблю #####)
+      # replace-words — заменить плохие слова текстом replacement
+      edit-message: spaces
+      replacement: "#"
+
+      # Команды при нарушении.
+      commands:
+        first: # имя команды (любое)
+          command: "" # команда без /
+          # Плейсхолдеры: %player% %content% %result% %context%
+          delay: 0 # задержка в тиках (20 тиков = 1 секунда)
+          console: true # true — от консоли, false — от игрока
+
+    advertisement:
+      check-chat: true
+      check-signs: true
+      check-books: true
+      check-anvils: false
+
+      warn-player: true
+      notify-staff: true
+
+      edit-message: full
+      replacement: "#"

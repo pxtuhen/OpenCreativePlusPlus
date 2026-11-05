@@ -1,0 +1,103 @@
+#
+# OpenCreative++ — миры: рекомендуемые, генераторы, удаление заброшенных.
+#
+
+#
+# Рекомендуемые миры — первая вкладка меню компаса.
+# Это ID миров, которые выбрал администратор.
+#
+#   /oc recommend [ID]    — добавить мир в рекомендуемые
+#   /oc unrecommend [ID]  — убрать
+#
+# По умолчанию пусто: в OpenCreative+ здесь были ID 1-5, и первые пять созданных миров
+# сами становились «рекомендуемыми». Остальные миры показываются в той же вкладке ниже.
+recommended-worlds: []
+
+#
+# Автоматическое удаление заброшенных миров, владельцы которых
+# давно не заходили на сервер.
+#
+# Удалить вручную: /oc deprecated delete [месяцев]
+#
+deprecated-worlds:
+
+  # Включить автоудаление.
+  auto-delete: false
+
+  # Сколько месяцев владелец не заходил, чтобы мир считался заброшенным.
+  months: 1
+
+  # Удалять заброшенные миры при запуске сервера (после загрузки миров).
+  delete-on-startup: false
+
+  # Как часто (в часах) проверять и удалять заброшенные миры во время работы.
+  # 0 — не проверять.
+  check-interval-hours: 24
+
+#
+# Типы миров, которые игрок может выбрать при создании.
+# Можно отключить стандартные и добавить свои плоские миры или шаблоны.
+#
+# Свой плоский мир задаётся строкой:
+#   "блок_первого_слоя,3*блок_второго_слоя;биом"
+# Несуществующий материал заменяется воздухом. Без числа высота слоя — 1.
+#
+# Шаблоны кладутся в папку plugins/OpenCreativePP/templates/ — просто скопируй
+# туда папку сохранённого мира. Мир кода можно добавить, если имя папки
+# заканчивается на "dev".
+#
+# Если меняешь список, поправь описание в файле локализации:
+# menus.world-creation.items.type
+#
+generators:
+
+  # Плоский мир.
+  flat: true
+
+  # Океан.
+  water: true
+
+  # Пустой мир (void).
+  empty: true
+
+  # Обычный ландшафт.
+  survival: true
+
+  # Большие биомы (может нагружать сервер!).
+  large-biomes: false
+
+  # Плоский мир начинается с Y: 0, а не с Y: -64.
+  generate-flat-higher: false
+
+  # Свои плоские миры. Ключ — ID (название в меню: locales → menus.world-creation.items.type.choices.<ID>).
+  # generation: "слой,3*слой,верхний_слой;биом"
+  custom-flats:
+    desert:
+      generation: "bedrock,3*sandstone,2*sand;desert"
+      generate-trees: false
+      icon: "SAND"
+    snowy:
+      generation: "bedrock,3*dirt,snow_block;snowy_plains"
+      generate-trees: true
+      icon: "SNOW_BLOCK"
+    beach:
+      generation: "bedrock,3*sandstone,2*sand;beach"
+      generate-trees: false
+      icon: "SANDSTONE"
+    stone:
+      generation: "bedrock,3*stone,stone;plains"
+      generate-trees: false
+      icon: "STONE"
+    nether_flat:
+      generation: "bedrock,3*netherrack,netherrack;nether_wastes"
+      generate-trees: false
+      icon: "NETHERRACK"
+  templates: {}
+    #pvp:
+    #  enabled: true
+    #  icon: "DIAMOND_SWORD"
+    #  folder: pvp
+    #  spawn:
+    #    x: 0
+    #    y: 70
+    #    z: 0

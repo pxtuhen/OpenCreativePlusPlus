@@ -1,0 +1,264 @@
+#
+# OpenCreative+ - Well, it's possible.
+# (C) McChicken Studio 2017-2025.
+#
+
+Changelogs.
+
+1.0
+
+  First demo version of OpenCreative+.
+  - Added flat world generation.
+  - Added worlds browser menu.
+
+  2022
+
+1.1 
+
+  Second demo version of OpenCreative+. Not stable.
+  - Added global chat (/cc).
+  - Added world's settings (name, description, icon)
+
+  2022
+
+1.2
+ 
+  Fixed version of 1.1.
+  2023
+
+1.3 - You like translating plugins, don't you?
+
+  Third demo version of OpenCreative+.
+  - Added customizable messages.
+  - Added new commands and menus.  
+  - Begin of development mode (/dev).
+  2023
+
+1.4 - Keep your friends close.
+
+  First release version of OpenCreative+.
+  - Added development mode (/dev) with few coding blocks.
+  - Added players management (kick, ban)
+  2024
+
+5.0 - Things will be different.
+
+  Second release version of OpenCreative+. Most stable and powerful.
+  - Improved development mode (/dev) with platforms customization.
+  - Added a lot of coding blocks.
+  - Added conditions.
+  - Added NOT arrow, block mover items.
+  - Added variables (local, global, saved).
+  - Added new values (Number, Location, Boolean, Variable...).
+  - Changed menus.
+  2024
+
+5.1 - Well, it's possiblle.
+  
+  - Added requirements in config
+  - Added custom heads, banners support for world icons
+  - Fixed issues
+  2025
+
+5.2 - Well, it's possible.
+  
+  - Duplicated 30 player actions as 30 entity actions
+  - Added new player event
+  - Added new world action 
+  2025
+
+5.3 - Well, it's possible.
+ 
+  - Changed /unloadedWorlds/ to /planets/
+  - Now worlds don't move between world container and planets folders 
+  - New entities browser menu
+  - New requirements in config.yml
+  - Added /like and /ad costs in config.yml
+  2025
+
+5.3.1 - Well, it's possible.
+
+  - Fixed kill potions issue
+  2025
+
+5.4 - Well, it's possible.
+
+  - Added moderation menu
+  - Added world access menu
+  - Added customizable sounds in config.yml
+  2025
+
+5.4.1 - Well, it's possible.
+
+  - Added new environment and world subcommands
+  - Default sign is Birch instead of Oak
+  2025
+
+5.4.2 - Well, it's possible.
+
+  - Added %list(name, index) placeholder
+  2025
+
+5.4.3 - Well, it's possible.
+ 
+  - Fixed selection action issues
+  2025
+
+5.5 - Well, it's possible.
+
+  - Added 32 entity events
+  - Added 35 world events
+  - Added 2 player events
+  - Added 3 player actions
+  2025
+  
+5.5.1 - Well, it's possible.
+
+  - Fixed custom containers issue
+  - Fixed platforms issue
+  2025
+
+5.6 - Well, it's possible.
+
+  - Added repeat and controller coding blocks
+  - Added %event% placeholder
+  - Added 4 repeat actions
+  - Added 2 controller actions
+  - Added 1 entity conditions
+  - Added 9 entity actions
+  - Added 1 player action
+  - Added 4 world actions
+  - Added 1 control action
+  - Added physical objects by pawsashatoy
+  - Added world's whitelist
+  - Added /oc register and /oc unregister commands
+  - Added bad items fixer
+  - Added lobby permissions for player groups
+  - Added disabling coding blocks in config.yml
+  2025
+
+5.7 - Well, it's possible
+
+  - :-)
+  
+  2025
+
+6.0 - Pre-release 9
+
+  Last version of OpenCreative+ before the OpenCreative++ fork.
+  2026
+
+#
+# OpenCreative++ - Build. Code. Play.
+# Unofficial fork of OpenCreative+ by McChicken Studio.
+#
+
+OpenCreative++ 1.0.0 - Build. Code. Play.
+
+  First version of OpenCreative++, based on OpenCreative+ 6.0.0 Pre-release 9.
+
+  Platform
+  - Updated to Paper 1.21.11 and Java 21, Gradle build
+  - Renamed plugin to OpenCreativePP, data folder plugins/OpenCreativePP
+  - Data from plugins/OpenCreative is copied automatically on first start
+  - New permissions: opencreativepp.player, opencreativepp.premium, opencreativepp.admin
+  - Russian is the default language, Ukrainian translation for all new texts
+  - Changed texts are refreshed on existing servers once per locale revision
+  - Update checker of the original is disabled by default
+
+  Config
+  - Split config into config.yml, groups.yml, worlds.yml, items.yml, chat.yml,
+    datapacks.yml, shop.yml and sounds.yml with comments
+  - Old single config.yml is split into the new files automatically
+  - Broken files are renamed instead of being reset, the error line is logged
+  - New options are added to existing files after updates
+  - Short startup log (one summary line), details with debug: true
+
+  Economy
+  - Added built-in currency without Vault (economy.type: internal, default)
+  - Added /balance, /pay, /baltop and /eco give|take|set|log
+  - Added daily login bonus, coins for playtime in other worlds (AFK is not counted)
+    and coins for world owners when new players visit
+  - Added operations log for admins
+  - Vault is still supported with economy.type: vault or auto
+
+  Ratings
+  - Replaced likes and dislikes with 1-5 stars (/rate, five stars menu)
+  - /like is 5 stars, /dislike is 1 star
+  - Worlds are sorted by weighted (Bayesian) rating
+  - Old likes are migrated as 5 stars, dislikes as 1 star
+  - Owners get a message when their world is rated
+
+  Upgrades
+  - Added /upgrades: extra coding floors, bigger world size and world slots for coins
+  - Prices and maximums in shop.yml
+  - "My limits" shows group limit + bought upgrades
+  - Contest worlds are not counted in worlds limit
+
+  Backups
+  - Added automatic world backups (world and developer world) on a timer
+  - Added /backups menu: create, restore, list with dates and sizes
+  - A "before restore" backup is made before every rollback
+  - Admins can back up and restore any world (opencreativepp.backup.admin)
+
+  Code marketplace
+  - Added /market: share code modules for free or sell them for coins
+  - Buyers get a license to install the module in any of their worlds
+  - Server commission, minimum and maximum prices, listings limit in shop.yml
+  - Paid modules can't be installed without a license
+  - Modules are rated with stars after installation
+
+  Build contests
+  - Added /contest: admins create contests with theme, generator, size, durations and rewards
+  - Phases: building, voting, results
+  - Every participant gets a separate world
+  - Contest worlds are locked after building, players vote with stars
+  - Winners get coins and commands, their worlds can be added to recommended
+  - Contest button in compass, line in lobby sidebar, announcements and titles
+
+  Website
+  - Added built-in website (web.site, port 22913): best worlds, playing now, new worlds
+  - Added world pages and current contest page
+  - Added JSON API: /api/worlds and /api/contest
+
+  Compass and menus
+  - Compass in hotbar slot 5 with 4 tabs: Recommended, My worlds, Favorites, Search
+  - Added "Continue" button, category filter, "playing now" sort, search by description
+  - Added "My limits" menu instead of join title
+  - Added /profile [player]: worlds, rating, favorites, recent worlds, invite button
+  - World name, author and rating are shown above the hotbar on world join
+
+  Chat and lobby
+  - Added colored chat and signs (&a, &l, HEX &#RRGGBB) with permission for each style
+  - Signs keep their color codes when edited again
+  - Added lobby sidebar and TAB header (online, worlds, balance, group, contest)
+  - Added Discord webhook: new worlds, contests, market sales
+
+  Worlds
+  - Added datapacks in worlds for Premium (/datapack) with validation of every pack
+  - Added "Run datapack function" world action
+  - Added 5 world types: desert, snowy plains, beach, stone and nether flats
+
+  Fixed bugs of OpenCreative+
+  - Fixed swapped green and blue colors in coding
+  - Fixed lost saved color variables
+  - Fixed code line stopping when condition, repeat or function has no targets
+  - Fixed two "Repeat N times" in a row
+  - Fixed actions after "Wait" running after /build
+  - Fixed "code is saving" forever after an error
+  - Fixed lost code changes on world unload
+  - Fixed particles that need data since 1.21.9
+  - Fixed players stuck in "connecting"
+  - Fixed flight carried between worlds
+  - Fixed new rank not expanding the world
+  - Fixed world settings reset after unload
+  - Fixed spawn inside the ground
+  - Fixed console error on every world creation
+  - Fixed player items disappearing after shift-click or drag in menus
+  - Fixed world icon taking the whole stack
+  - Fixed "Kick all" kicking the owner
+  - Fixed chat input requests never expiring (now 60 seconds and "cancel")
+  - Fixed broken vanilla /give, /tp, /gamemode syntax for admins
+  - Fixed /time set night
+  - Fixed filter.yml failing to load on every start
+  2026

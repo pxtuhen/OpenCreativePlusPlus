@@ -1,0 +1,124 @@
+#
+# OpenCreative++ — предметы в инвентаре: лобби, мир владельца, мир кода.
+#
+# Номер — ячейка инвентаря, считая с 1:
+#   1-9   — хотбар слева направо (5 — центральная ячейка, её инвентарный ID = 4)
+#   10-36 — основной инвентарь
+#
+# Предмет можно задать тремя способами:
+#   5: "worlds"                    — встроенный предмет плагина как есть
+#   5:                             — встроенный предмет, но со своим материалом
+#     type: "worlds"
+#     material: "compass"
+#   9:                             — полностью свой предмет
+#     name: "&aДонат &3[ПКМ]"
+#     lore:
+#       - "&7Все привилегии сервера"
+#     material: "emerald"
+#     amount: 1
+#     glowing: true
+#
+# Встроенные предметы лобби:
+#   worlds      — компас, открывает меню миров (Рекомендуемые / Мои / Любимые / Поиск)
+#   own-worlds  — сразу открывает «Мои миры»
+#   changelogs  — список изменений
+#
+# Чтобы не выдавать ничего: lobby: "none" (не рекомендуется — игрокам
+# придётся знать команды).
+#
+# Изменить в игре: /oc items set lobby [ячейка] — с предметом в руке.
+#
+items:
+  # Предметы в лобби.
+  lobby:
+    1: "changelogs"
+    5: # Компас меню миров — ячейка ID 4 (центр хотбара)
+      type: "worlds"
+      material: "compass"
+    9:
+      type: "own-worlds"
+      material: "nether_star"
+    # Пример предмета со своим переводом:
+    #8:
+    #  translation: "player-settings" # ключ в файле локализации (items.lobby.player-settings),
+    #                                 # имя и описание пишешь сам. Чтобы /oc resetlocale
+    #                                 # его не стёр: /oc ignoremessage items.lobby.player-settings
+    #  material: "player_head"
+  # Владелец мира в режиме строительства.
+  build-owner:
+    8:
+      type: "build-tools"
+      material: "brick"
+    9:
+      type: "world-settings"
+      material: "compass"
+  # Владелец мира в режиме игры.
+  play-owner:
+    9:
+      type: "world-settings"
+      material: "compass"
+  # Мир кода (/dev), разработчик.
+  coding:
+    #
+    # 1: "event-player"
+    # — то же самое, что
+    # 1:
+    #   type: "event-player"
+    #
+    1: "event-player"
+    2: "player-action"
+    3: "player-condition"
+    4: "else-condition"
+    8: "coding-book"
+    9: "variables"
+    10: "cycle"
+    11: "repeat-action"
+    12: "controller-action"
+    13: "control-action"
+    14: "variable-action"
+    15: "variable-condition"
+    18: "fly-speed-changer"
+    19: "event-world"
+    20: "world-condition"
+    21: "world-action"
+    22: "method"
+    23: "launch-method-action"
+    24: "selection-action"
+    26: "debug-torch"
+    27: "lines-controller"
+    28: "event-entity"
+    29: "entity-condition"
+    30: "entity-action"
+    31: "function"
+    32: "launch-function-action"
+    36: "arrow-not"
+  # Мир кода (/dev), владелец мира.
+  coding-owner:
+    1: "event-player"
+    2: "player-action"
+    3: "player-condition"
+    4: "else-condition"
+    8: "variables"
+    9: "world-settings"
+    10: "cycle"
+    11: "repeat-action"
+    12: "controller-action"
+    13: "control-action"
+    14: "variable-action"
+    15: "variable-condition"
+    17: "fly-speed-changer"
+    18: "coding-book"
+    19: "event-world"
+    20: "world-condition"
+    21: "world-action"
+    22: "method"
+    23: "launch-method-action"
+    24: "selection-action"
+    26: "debug-torch"
+    27: "lines-controller"
+    28: "event-entity"
+    29: "entity-condition"
+    30: "entity-action"
+    31: "function"
+    32: "launch-function-action"
+    36: "arrow-not"

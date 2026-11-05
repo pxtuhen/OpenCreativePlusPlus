@@ -1,0 +1,178 @@
+#
+# OpenCreative++ — группы игроков: лимиты, кулдауны и права.
+#
+# Группа выдаётся по праву из поля permission (например через LuckPerms):
+#   /lp user Ник permission set opencreativepp.premium
+# Группа default действует для всех, право ей не нужно.
+# inherits: "default" — взять все значения из default и переопределить только указанные.
+#
+# Команды:
+#   /oc groups info [группа]                             — показать параметры группы
+#   /oc groups edit [группа] [limit/modifier] [тип] [число] — изменить лимит
+#   /oc groups remove [группа]                           — удалить группу
+#
+# Что видит игрок: размер мира, этажи кодинга и остальные лимиты показываются
+# в меню «Мои лимиты» (компас → кнопка «Мои лимиты»).
+#
+groups:
+  default: # для всех игроков, право не нужно
+    cooldowns: # в секундах
+      generic-command: 5     # /play, /build, /games
+      advertisement: 120     # /ad — реклама мира
+      creative-chat: 10      # /cc — глобальный чат
+      world-chat: 2          # чат внутри мира
+      module-usage: 7        # создание и вставка модулей
+      duplication-usage: 7   # дублирование блоков манипулятором
+      world-download: 120    # скачивание мира /world download
+      prompter-usage: 60     # генерация кода /env make
+    creating-world:
+      limit: 2               # сколько миров игрок может создать
+    creating-module:
+      limit: 2               # сколько модулей кода игрок может создать
+    lobby-permissions: # права, которые выдаются игроку в лобби
+      - "music.play"
+    world:
+      size: 128              # размер мира (сторона квадрата в блоках, 128 = 128×128)
+      like-reward: 1         # награда владельцу за /like (нужен Vault)
+      advertisement-cost: 0  # цена /ad (нужен Vault)
+      coding-prompter: false # доступ к /env make
+      limits:
+        #
+        # Лимиты мира, который создал игрок этой группы.
+        #
+        executor-calls: 100           # вызовов исполнителей (событий)
+        coding-actions-calls: 500     # действий кода за 3 секунды
+        entities-amount: 50           # существ в мире
+        displays-amount: 60           # text/item/block display в мире
+        dragons-amount: 5             # эндер-драконов в мире
+        modifying-blocks: 5000        # изменений блоков действиями мира в секунду
+        checking-blocks: 3000         # проверок блоков действиями мира в секунду
+        redstone-changes: 100         # операций редстоуна
+        repeats-amount: 100           # повторений «Повторять» в секунду
+        opening-inventories: 5        # открытий инвентаря за 5 секунд (защита от «не выйти»)
+        sending-web-requests: 5       # веб-запросов за 5 секунд
+        variables-amount: 50          # переменных всего (сохранённые, глобальные, локальные)
+        scoreboards-amount: 5         # скорбордов
+        bossbars-amount: 5            # боссбаров
+        recipes-amount: 10            # своих рецептов крафта и печки
+        coding-platforms: 4           # ЭТАЖЕЙ (платформ) КОДИНГА
+        changing-list-elements: 50    # изменений элементов списков и словарей в секунду
+        changing-targets: 200         # изменений целей действием выборки
+        builders-amount: 10           # добавленных строителей
+        developers-amount: 10         # добавленных разработчиков
+        blacklisted-amount: 10        # забаненных в мире
+        whitelisted-amount: 10        # в белом списке мира
+        physical-objects: 140         # физических объектов, созданных кодом
+        selected-lines-amount: 3      # выделенных строк кода манипулятором
+        errors-amount: 10             # серьёзных ошибок за 3 секунды (защита от краша)
+        script-size: 10               # максимальный размер скрипта в МБ
+      per-player-limit-modifiers:
+        #
+        # На сколько лимит растёт за каждого игрока в мире
+        # (и уменьшается, когда игрок выходит).
+        #
+        executor-calls: 100
+        coding-actions-calls: 10
+        entities-amount: 50
+        displays-amount: 2
+        modifying-blocks: 0
+        redstone-changes: 20
+        variables-amount: 50
+        scoreboards-amount: 1
+        repeats-amount: 10
+        changing-list-elements: 10
+        changing-targets: 100
+        bossbars-amount: 1
+        physical-objects: 5
+      build-permissions: # права в режиме строительства (/build)
+        - "headdb.open"
+        - "worldedit.wand"
+        - "minecraft.debugstick"
+        #- "worldedit.region.set"
+      play-permissions: # права в режиме игры (/play)
+        - "headdb.open"
+      dev-permissions: # права в мире кода (/dev)
+        - "headdb.open"
+        - "essentials.itemname"
+        # Чтобы ЗАБРАТЬ право, которое у игрока уже есть (например у админа),
+        # поставь ! в начале:
+        # - !nte.default
+      visitor-permissions:   # права гостя в мире (/play, /build), если он не строитель,
+        - "essentials.ptime" # не разработчик и не владелец. Снимаются, когда гость становится строителем.
+  premium:
+    permission: "opencreativepp.premium"
+    inherits: "default"
+    cooldowns:
+      generic-command: 3
+      advertisement: 100
+      creative-chat: 4
+      world-chat: 1
+      module-usage: 7
+      duplication-usage: 7
+      world-download: 120
+      prompter-usage: 60
+    creating-world:
+      limit: 4
+    creating-module:
+      limit: 4
+    lobby-permissions:
+      - "music.play"
+    world:
+      size: 256
+      like-reward: 1
+      advertisement-cost: 0
+      coding-prompter: true
+      limits:
+        executor-calls: 120
+        coding-actions-calls: 500
+        entities-amount: 200
+        displays-amount: 300
+        dragons-amount: 5
+        modifying-blocks: 7500
+        checking-blocks: 4000
+        redstone-changes: 200
+        opening-inventories: 5
+        sending-web-requests: 5
+        variables-amount: 500
+        recipes-amount: 10
+        scoreboards-amount: 10
+        bossbars-amount: 10
+        coding-platforms: 4
+        repeats-amount: 100
+        changing-list-elements: 50
+        changing-targets: 200
+        builders-amount: 10
+        developers-amount: 10
+        blacklisted-amount: 10
+        whitelisted-amount: 10
+        physical-objects: 140
+        selected-lines-amount: 3
+        errors-amount: 10
+        script-size: 10
+      per-player-limit-modifiers:
+        executor-calls: 30
+        coding-actions-calls: 10
+        entities-amount: 50
+        displays-amount: 2
+        modifying-blocks: 0
+        redstone-changes: 20
+        repeats-amount: 10
+        changing-list-elements: 10
+        changing-targets: 100
+        variables-amount: 50
+        scoreboards-amount: 1
+        bossbars-amount: 1
+        physical-objects: 5
+      build-permissions:
+        - "headdb.open"
+        - "worldedit.wand"
+        - "minecraft.debugstick"
+        #- "worldedit.region.set"
+        #- "worldedit.region.replace"
+      play-permissions:
+        - "headdb.open"
+      dev-permissions:
+        - "headdb.open"
+        - "essentials.itemname"
+      visitor-permissions:
+        - "essentials.ptime"

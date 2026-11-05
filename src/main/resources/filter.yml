@@ -1,0 +1,126 @@
+#
+# OpenCreative+ 6.0.0 - Well, it's possible.
+# (C) McChicken Studio 2017-2026.
+#
+
+#
+# Content Filter
+# Here you can add own rules with your regexes.
+#
+
+#
+# Special commentary block to hide bad words from screen :)
+#
+# Daisy, Daisy, give me your answer do,
+# I'm half crazy,
+# All for the love of you.
+#
+# It won't be a stylish marriage,
+# I haven't got a carriage,
+# But you'll look sweet, up on the seat,
+# Of a bicycle built for two!
+#
+# Daisy, Daisy, give me your answer do,
+# I'm half crazy,
+# All for the love of you.
+#
+# It won't be a stylish marriage,
+# I haven't got a carriage,
+# But you'll look sweet, up on the seat
+# Of a bicycle built for two!
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# Make sure you're not streaming this file or recording for public,
+# because it contains words not for kids, that you must hide!
+#
+
+#
+# Whitelist allows writing some specific words, and
+# it can be useful for allowing typing your server IPs.
+# It's regex patterns too!
+#
+whitelist:
+  - "127.0.0.1"
+  - "192.168.0.1"
+  - "mc.your-server-name.net"
+  - "discord.gg/your-server-name"
+
+#
+# Advertisement rule detects some bad links and
+# server IPs to disallow advertising other servers.
+#
+advertisement:
+  - '[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+'
+  - '(?i)\\b[a-z0-9-]+(?:\\.[a-z0-9-]+)*\\.(?:ru|io|net|su|exaroton\\.me|aternos\\.me)\\b'
+  - '(?i)(dsc|discord\\.(gg|io|me|li)|discordapp\\.com\\/invite|t\\.me|telegram\\.me|vk\\.com\\/(invite|join))\\/[a-zA-Z0-9_-]+'
+
+#
+# Well... there are a lot of bad words here!
+# We hope players won't swear on your server! :)
+#
+swearing:
+  - "(fuck|bitch|whore|piss|cock|dick|cum|pussy|pussies|penis|vagina|anal|butthole|dildo|shit|bastard|hitler|nigger|nigga|masturbat|fvck|blowjob|fuk|fvk)"
+  - "(?<!gr|p)ass(?![A-Za-z])"
+  - "(?<!влю|утре|ре|сла|роб|со|оскор|по|огра|кора|ру|употре|ду)бля"
+  - '(?<!вы|до|за|о|по|при)кончи(?!лись|ли|лось|лась)\\w*'
+  - "(?<!зам|к|б|р)анал(?!из|ог)"
+  - "(?<!пыле)соси(?!ск)"
+  - "(?<!ст|тр|хл|д|гл|пер|уч|н|к|р|кол|тел)еба"
+  - "(?<!истр|пер|гр|скр)еби"
+  - "(?<!о|а)жид(?!ко|ка|ки)"
+  - "(?<!с)пидр"
+  - "чмо(?!к)"
+  - "🖕"
+  - "(?<!п|те|ко|роб|спо|со)лох"
+  - "(?<!бар)сук[аи]"
+  - "(?<!rob)lox"
+  - "(?<!підра|ша|пси|стра|штри|запси|застра|подстра|перестра)хуй"
+  - '(?i)\b(zov|zvo)\b'
+  - '(?<!\p{L})коч(?:братан)?(?!\p{L})'
+  - "(cyka|cyki|cy4ka|suka|syka|blyat|blyad|cy4ki|pidor|pidar|govno|gavno|sperma|pizda|pi3da|piska|xyi|chlen|hohol|xoxol|xoxli|hohli|goida|ebat|pizdez|dolbaeb|dolboyob|dovboyob|dolbayob|dolboeb)"
+  - "(сучка|сучки|блядь|бляди|блядство|виблядок|вибляд|выблядок|выблядк|мразь|мрази|хуесос|охуел|охуен|охует|мудак|мудачь|пидор|пидар|гавно|гавна|говно|говна|негр|йобани|йобни|хуетот|хуётот|хуета|хуёта|хуита|хуеты|долбоеб|долбоёб|довбойоб|долбаеб|долбаёб|уебок|уёбок|уёбище|уебище|уебка|уёбка|поебен|ебану|ебну|ёбну|ёбану|еблан|ёблан|пизда|пизди|пизде|пизды|пиздю|пиздо|пизду|пенис|вагина|вагины|вагиной|вагину|мастурбац|секс|сиськи|сиська|сиськой|сися|бубсы|охуе|гандон|презерватив|презик|гондон|дрочит|сперма|спермы|шлюха|шлюхи|шлюхами|шлюхей|шлюху|спермой|сперму|трахн|трахал|страпон|дилдо|дилдак|сосни|хуи|хуя|хохля|хохол|хохлы|хохлі|хахол|бендеровец|бандеровец|гойда|гойды|гойду|хохло|писька|писюн|ахует|ахуен|ахуел|письку|писькой|членом|письки|дерьм|гитлер|придурок|дибил|дебил|сволочь|гнида|гниды|сволочи|мразот|влагалищ|жопа|жопе|жопу|жопы)"
+
+#
+# To add custom rule here, just create a name for it
+# and type regex patterns in list, just like above.
+# For example:
+#
+# meow-trigger: # will detect all "meow" in messages!
+#   - "meow"
+#
+# To create own advanced regex pattern, visit this site:
+# https://regex-generator.olafneumann.org/
+#
+# Or, you can try to ask AI for that.
+#
+# Also be careful when editing regex!
+# If you have \ symbol, you MUST type \\ instead (double slashes!)
+#
+# Please note, that text content will be lower-cased,
+# so you don't need to type upper-cased symbols.
+#
+# After adding rules here, you need to connect them with config.yml:
+# filter:
+#   rules:
+#     your-rule-name:
+#       ...
+#

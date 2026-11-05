@@ -1,0 +1,47 @@
+#
+# OpenCreative++ — звуки.
+#
+# Здесь можно заменить любой звук плагина. Если звука нет в списке,
+# играет встроенный. Темы удобны для праздников.
+#
+#   /oc sounds [тема]  — включить тему
+#   /oc sound [звук]   — проиграть звук
+#
+# Звук из ресурспака:   name: "имя_пака:sound.id"
+# Отключить звук:       lobby-music:
+#                         name: " "
+#
+sounds:
+  #
+  # Все звуки:
+  #
+  # lobby, lobby-music, opencreative, reloading, reloaded, menu-next-page, menu-previous-page, menu-open-world-access,
+  # menu-next-choice, menu-open-generation, menu-open-environment, menu-open-world-settings, menu-open-world-moderation,
+  # menu-open-recommendations, menu-open-own-worlds-browser, menu-open-worlds-browser, menu-open-entities-browser,
+  # menu-open-values-browser, menu-open-confirmation, menu-generation-change, menu-environment-change, menu-entities-browser-sort,
+  # menu-worlds-browser-sort, menu-worlds-browser-category, menu-world-search, menu-generate-structures-change, world-generation,
+  # world-connection, world-connected, world-liked, world-disliked, welcome-to-new-world, world-mode-build, world-mode-dev,
+  # world-now-builder, world-now-developer, world-now-developer-guest, world-kicked, world-banned, player-cancel, player-fail,
+  # player-error, player-teleport, player-respawn, world-code-error, world-code-compile-error, world-code-critical-error,
+  # world-settings-flag-change, world-settings-category-set, world-settings-time-change, world-settings-autosave-on,
+  # world-settings-autosave-off, world-settings-sharing-public, world-settings-sharing-private, world-settings-spawn-teleport,
+  # world-settings-spawn-set, world-settings-owner-set, world-purchase, world-remove-entity, world-teleport-to-entity,
+  # world-teleport-entity-to-me, dev-connected, dev-not-allowed, dev-open-chest, dev-open-barrel, dev-closed-chest,
+  # dev-closed-barrel, dev-set-event, dev-set-action, dev-set-condition, dev-set-target, dev-set-method, dev-set-function,
+  # dev-var-list, dev-platform-color, dev-platform-claim, dev-action-target, dev-action-with-chest, dev-condition-not,
+  # dev-condition-default, dev-cycle-delay-decrease, dev-cycle-delay-increase, dev-cycle-delay-set, dev-cycle-named,
+  # dev-function-named, dev-method-named, dev-variable-parameter, dev-next-parameter, dev-change-category, dev-take-value,
+  # dev-value-set, dev-text-set, dev-number-set, dev-particle-set, dev-variable-set, dev-variable-change, dev-fly-speed-change,
+  # dev-potion-set, dev-location-set, dev-location-teleport, dev-location-teleport-back, dev-event-value-set, dev-vector-set,
+  # dev-boolean-true, dev-boolean-false, dev-move-blocks-right, dev-move-blocks-left, dev-debug-on, dev-debug-off, maintenance-notify,
+  # maintenance-count, maintenance-start, maintenance-end, world-load, world-unload, world-deletion
+  #
+  theme: "default"
+  default:
+    lobby-music:
+      name: "music_disc.creator"
+      pitch: 0.9
+  christmas:
+    lobby-music:
+      name: "music_disc.chirp"
+      pitch: 1.7

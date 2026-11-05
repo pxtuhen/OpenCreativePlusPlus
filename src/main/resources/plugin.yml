@@ -1,0 +1,270 @@
+#
+# OpenCreative++ ${version} — форк OpenCreative+ 6.0.0 (C) McChicken Studio 2017-2026, GNU AGPL v3.
+#
+
+name: 'OpenCreativePP'
+main: ua.mcchickenstudio.opencreative.OpenCreative
+api-version: 1.21
+
+version: '${version}'
+description: 'OpenCreative++ — миры игроков, строительство и кодинг. Форк OpenCreative+.'
+build: ${build_timestamp}
+
+authors: [McChicken Studio]
+contributors: [McChicken Team, onn512, pawsashatoy, LWJENNI, HACKERPRO17, liventmst, logiklop, 70N77U, kalienda, Renzotom]
+prefix: "OpenCreative++"
+
+load: POSTWORLD
+database: false
+website: https://gitlab.com/eagles-creative/opencreative
+provides: [OpenCreative]
+
+softdepend: [PacketEvents, PlaceholderAPI, ProtocolLib, Vault, LibsDisguises]
+
+#
+# We load plugin before these plugins
+# to register some commands first.
+#
+loadbefore:
+  - FastAsyncWorldEdit
+  - WorldEdit
+  - Essentials
+
+commands:
+  creative:
+    description: 'Shows OpenCreative+ information.'
+    aliases: [coding, creativecoding, скуфешму, creative, oc]
+  edit:
+    description: 'Edits item in hand.'
+    aliases: [увше, itemedit, edititem]
+  locate:
+    description: 'Locates player`s current world.'
+    aliases: [дщсфеу, find, аштв]
+  chat:
+    description: 'Sends message to all players.'
+    aliases: [cc, сс]
+  build:
+    description: 'Changes world`s mode to build.'
+    aliases: [игшдв]
+  dev:
+    description: 'Connects to developer world.'
+    aliases: [develop, code, вум, d]
+  play:
+    description: 'Changes world`s mode to play.'
+    aliases: [start, здфн, ыефке, run, кгт]
+  join:
+    description: 'Joins world by specified id.'
+    aliases: [ощшт, id, j, о]
+  backups:
+    description: 'Резервные копии своего мира.'
+    aliases: [backup, бэкапы]
+  contest:
+    description: 'Конкурс построек.'
+    aliases: [конкурс, event]
+  market:
+    description: 'Маркет кода: купить или выставить модуль.'
+    aliases: [маркет, рынок]
+  upgrades:
+    description: 'Платные улучшения мира: этажи, размер, слоты.'
+    aliases: [улучшения, shop]
+  rate:
+    description: 'Оценить мир от 1 до 5 звёзд.'
+    aliases: [оценить, stars]
+  balance:
+    description: 'Баланс монет.'
+    aliases: [bal, money, монеты, баланс]
+  pay:
+    description: 'Перевести монеты игроку.'
+    aliases: [перевести]
+  baltop:
+    description: 'Самые богатые игроки.'
+    aliases: [moneytop]
+  eco:
+    description: 'Управление монетами (админ).'
+    aliases: [economy]
+  profile:
+    description: 'Профиль игрока: миры, лайки, любимые.'
+    aliases: [профиль, згщашду]
+  datapack:
+    description: 'Датапаки текущего мира (Premium).'
+    aliases: [dp, датапак, вфефзфсл]
+  ad:
+    description: 'Advertises world to all players.'
+    aliases: [фв]
+  like:
+    description: 'Marks current world as liked.'
+    aliases: [дшлу, vote, v, l]
+  dislike:
+    description: 'Marks current world as disliked.'
+    aliases: [вшыдшлу, вшідшлу, dis]
+  spawn:
+    description: 'Teleports to spawn.'
+    aliases: [спавн, ізфцт, ызфцт, hub, lobby, s, ы, і]
+  menu:
+    description: 'Opens worlds browser menu.'
+    aliases: [меню, games, worlds, ьутг, minigames, g, п]
+  ownworlds:
+    description: 'Opens own worlds browser menu.'
+    aliases: [myworlds, mygames, owngames, ьнцщкдвы, ьнпфьуы, ьнпфьуі, ьнцщкдві, щцтцщкдві, щцтцщкдвы]
+  world:
+    description: 'Opens world`s settings menu.'
+    aliases: [settings, game, іуеештпі, ыуеештпы, setting, цщкдв]
+  environment:
+    description: 'Opens environment`s settings menu.'
+    aliases: [env, утм, утмшкщтьуте, editor, увшещк]
+  value:
+    description: 'Gives coding value item to player.'
+    aliases: [text, number, num, boolean, bool, location, loc,
+              vector, eventvalue, gamevalue, worldvalue, variable, var]
+  gamemode:
+    description: 'Changes current player`s gamemode.'
+    aliases: [gm, гм, пь, пфьуьщву]
+  give:
+    description: 'Gives specified item to player.'
+    aliases: [пшму]
+  teleport:
+    description: 'Teleports to specified location.'
+    aliases: [tp, еудузщке, ез]
+  playsound:
+    description: 'Plays specified sound.'
+    aliases: [здфніщгтв, здфныщгтв]
+  stopsound:
+    description: 'Stops specified sound.'
+    aliases: [ыещзыщгтв, іещзіщгтв]
+  weather:
+    description: 'Changes current world`s weather.'
+    aliases: [цуферук]
+  time:
+    description: 'Sets current world`s time.'
+    aliases: [ешьу]
+  module:
+    description: 'Opens module`s browser menu.'
+    aliases: [modules, ьщвгдуы, ьщвгдуі, ьщвгду]
+  jointo:
+    description: 'Connects player to specified one'
+    aliases: [ощштещ]
+  color:
+    description: 'Allows player to pick a color'
+    aliases: [сщдщк, colors, colorpicker]
+#  favorite:
+#    description: 'Adds world to favorites list'
+#    aliases: [fav, афм, афмщкшеу, favourite]
+#  unfavorite:
+#    description: 'Removes world from favorites list'
+#    aliases: [unfav, гтафм, гтафмщкшеу, unfavourite]
+#
+# Права OpenCreative++. Полный список и описание — COMMANDS.md.
+# Роли:
+#   opencreativepp.player — обычный игрок (есть у всех)
+#   opencreativepp.premium — Premium: группа premium (groups.yml) + датапаки
+#   opencreativepp.admin — администратор (по умолчанию у OP)
+#
+permissions:
+  opencreativepp.player:
+    description: 'Обычный игрок: цветной чат и таблички.'
+    default: true
+    children:
+      opencreativepp.chat.color: true
+      opencreativepp.chat.hex: true
+      opencreativepp.chat.format: true
+      opencreativepp.sign.color: true
+      opencreativepp.sign.hex: true
+      opencreativepp.sign.format: true
+  opencreativepp.chat.color:
+    description: 'Коды цветов &a..&f в чате.'
+    default: true
+  opencreativepp.chat.hex:
+    description: 'HEX-цвета &#RRGGBB в чате.'
+    default: true
+  opencreativepp.chat.format:
+    description: 'Жирный, курсив, подчёркнутый, зачёркнутый в чате.'
+    default: true
+  opencreativepp.chat.obfuscated:
+    description: '&k в чате.'
+    default: op
+  opencreativepp.sign.color:
+    description: 'Коды цветов на табличках.'
+    default: true
+  opencreativepp.sign.hex:
+    description: 'HEX-цвета на табличках.'
+    default: true
+  opencreativepp.sign.format:
+    description: 'Жирный, курсив и т.д. на табличках.'
+    default: true
+  opencreativepp.sign.obfuscated:
+    description: '&k на табличках.'
+    default: op
+  opencreativepp.datapack:
+    description: 'Premium: включать датапаки в своём мире.'
+    default: false
+  opencreativepp.premium:
+    description: 'Premium: группа premium из groups.yml (больше лимитов) и датапаки.'
+    default: false
+    children:
+      opencreativepp.player: true
+      opencreativepp.datapack: true
+  opencreativepp.admin:
+    description: 'Администратор OpenCreative++: все команды /oc, модерация миров, обход лимитов.'
+    default: op
+    children:
+      opencreativepp.player: true
+      opencreativepp.premium: true
+      opencreativepp.datapack: true
+      opencreativepp.economy.admin: true
+      opencreativepp.backup.admin: true
+      opencreativepp.contest.admin: true
+      opencreativepp.chat.obfuscated: true
+      opencreativepp.sign.obfuscated: true
+      opencreative.reload: true
+      opencreative.setspawn: true
+      opencreative.resetlocale: true
+      opencreative.print: true
+      opencreative.list.loaded: true
+      opencreative.list.players: true
+      opencreative.list.all: true
+      opencreative.list.deprecated: true
+      opencreative.list.corrupted: true
+      opencreative.delete.deprecated: true
+      opencreative.moderation.menu: true
+      opencreative.moderation.menus: true
+      opencreative.world.info: true
+      opencreative.world.load: true
+      opencreative.world.unload: true
+      opencreative.world.unload.all: true
+      opencreative.world.register: true
+      opencreative.world.unregister: true
+      opencreative.world.recommend: true
+      opencreative.world.unrecommend: true
+      opencreative.world.setowner: true
+      opencreative.world.setsize: true
+      opencreative.world.size: true
+      opencreative.world.set-platformer: true
+      opencreative.maintenance: true
+      opencreative.maintenance.bypass: true
+      opencreative.stability.bypass: true
+      opencreative.creative-chat: true
+      opencreative.creative-chat.bypass: true
+      opencreative.spy: true
+      opencreative.groups.info: true
+      opencreative.groups.edit: true
+      opencreative.groups.remove: true
+      opencreative.items.get: true
+      opencreative.items.get-kit: true
+      opencreative.items.get-slot: true
+      opencreative.items.set: true
+      opencreative.items.reset: true
+      opencreative.sounds.theme: true
+      opencreative.sounds.play: true
+      opencreative.world.private.bypass: true
+      opencreative.world.banned.bypass: true
+      opencreative.world.kick.bypass: true
+      opencreative.world.ban.bypass: true
+      opencreative.lobby.placing-blocks.bypass: true
+      opencreative.lobby.destroying-blocks.bypass: true
+      opencreative.lobby.spawning-mobs.bypass: true
+      opencreative.lobby.damaging-mobs.bypass: true
+      opencreative.lobby.world-edit.bypass: true
+      opencreative.lobby.changing-blocks.bypass: true
+      opencreative.lobby.editing-armor-stands.bypass: true
+      opencreative.datapacks.list: true
+      opencreative.datapacks.reload: true

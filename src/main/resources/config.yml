@@ -1,0 +1,664 @@
+#
+# OpenCreative++ — основной конфиг.
+# Форк OpenCreative+ 6.0.0 от McChicken Studio (GNU AGPL v3).
+#
+# Настройки разложены по файлам:
+#   config.yml    — основное (этот файл): лобби, сообщения, кодинг, защита, логи
+#   groups.yml    — группы игроков: размер мира, этажи кодинга, лимиты, кулдауны
+#   worlds.yml    — рекомендуемые миры, генераторы, удаление заброшенных миров
+#   items.yml     — предметы в лобби и в мирах (компас и т.д.)
+#   chat.yml      — цветной чат, цветные таблички, фильтр слов
+#   filter.yml    — сами запрещённые слова (регулярные выражения)
+#   sounds.yml    — звуки
+#   datapacks.yml — датапаки в мирах игроков
+#   locales/      — тексты сообщений и меню (ru, en, ua)
+#
+# Все команды и права — в файле COMMANDS.md (репозиторий плагина)
+# и в /oc help в игре.
+#
+# Перечитать конфиг без перезапуска: /oc reload
+# Если в файле ошибка, плагин переименует его в «имя-сломан-дата.yml»,
+# создаст файл по умолчанию и напишет в консоль строку с ошибкой.
+# Новые параметры после обновления плагина дописываются сами.
+#
+version: 6.0.0
+
+# Скрывать в TAB игроков из других миров:
+#   spectator — полупрозрачный ник (нужен ProtocolLib)
+#   full      — полностью убрать из TAB
+#   none      — не скрывать
+hide-from-tab: spectator
+
+#
+# Лобби — мир, куда игрок попадает при входе, по /spawn, /lobby, /hub
+# и когда его кикнули или забанили в чужом мире.
+#
+# Точка спавна: /oc setspawn
+#
+lobby:
+  # Название существующего мира-лобби.
+  world: "world"
+
+  # Запретить ставить блоки в лобби (обход: opencreative.lobby.placing-blocks.bypass)
+  disallow-placing-blocks: true
+
+  # Запретить ломать блоки в лобби (обход: opencreative.lobby.destroying-blocks.bypass)
+  disallow-destroying-blocks: true
+
+  # Запретить спавнить мобов в лобби (обход: opencreative.lobby.spawning-mobs.bypass)
+  disallow-spawning-mobs: true
+
+  # Запретить бить мобов в лобби (обход: opencreative.lobby.damaging-mobs.bypass)
+  disallow-damaging-mobs: true
+
+  # Запретить WorldEdit в лобби (обход: opencreative.lobby.world-edit.bypass)
+  disallow-world-edit: true
+
+  # Отключить любые взрывы (крипер, TNT) в лобби.
+  disable-explosions: true
+
+  # Запретить менять двери, калитки, горшки, рамки, люки (обход: opencreative.lobby.changing-blocks.bypass)
+  disallow-changing-blocks: true
+
+  # Запретить менять стойки для брони (обход: opencreative.lobby.editing-armor-stands.bypass)
+  disallow-editing-armor-stands: true
+
+  # Очищать инвентарь при переходе между мирами.
+  #
+  # Рекомендуется "all": иначе игроки вынесут ценное (алмазы) или опасное (TNT) в другие миры.
+  #
+  # all      — все миры
+  # creative — только миры игроков и лобби
+  # planets  — только миры игроков
+  # lobby    — только лобби
+  # none     — не очищать (небезопасно!)
+  clear-inventory: "all"
+
+  # Ставить режим «Приключение» при переходе между мирами.
+  # Значения как у clear-inventory. Рекомендуется "all" (иначе можно унести полёт).
+  reset-gamemode: "all"
+
+  # Отменять телепорт от других плагинов, если точка за границей мира.
+  # Значения как у clear-inventory.
+  cancel-out-of-borders-teleport: "planets"
+
+  # Сбрасывать дальность прорисовки и симуляции при переходе между мирами.
+  # Если чанки в мирах не видны — поставь false (отключит действия «Дальность прорисовки»).
+  reset-view-distance: true
+
+  # Сбрасывать ресурспак при переходе между мирами.
+  # Если стоит ItemsAdder / Oraxen / Nexo и их пак ломается — поставь false
+  # (отключит действие «Установить ресурспак»).
+  reset-resource-pack: true
+
+  # Сбрасывать скин и плащ при переходе между мирами.
+  # Если стоит SkinsRestorer и скины ломаются — поставь false
+  # (отключит действия «Установить скин» и «Установить плащ»).
+  reset-skin: true
+
+  # Телепортировать в лобби при входе на сервер.
+  teleport-on-join: true
+
+  # При входе в мир показывать над хотбаром: название • автор • ★ рейтинг • ID.
+  world-info-actionbar: true
+
+  # Боковая панель (scoreboard) в лобби. Коды цветов &a и HEX &#RRGGBB работают.
+  # Плейсхолдеры: %player% %online% %worlds% (всего миров) %loaded% (загружено)
+  #               %group% %my-worlds% %worlds-limit% %world% %balance%
+  sidebar:
+    enabled: true
+    # Строка %contest% — пока идёт конкурс (иначе пустая).
+    contest-line: "&6Конкурс: &f%name% &7(%time%)"
+    title: "&b&lOpenCreative&d&l++"
+    lines:
+      - "&7"
+      - "&fОнлайн: &a%online%"
+      - "&fМиров: &a%worlds% &7(%loaded% открыто)"
+      - "&7"
+      - "&fГруппа: &e%group%"
+      - "&fТвои миры: &a%my-worlds%&7/%worlds-limit%"
+      - "&fМонеты: &e%balance%"
+      - "%contest%"
+      - "&7"
+      - "&7Компас &f→ &7миры сервера"
+
+  # Шапка и подвал списка игроков (TAB) — для всех, не только в лобби.
+  tablist:
+    enabled: true
+    # Как %world% называется в лобби.
+    lobby-name: "Лобби"
+    header:
+      - "&b&lOpenCreative&d&l++"
+      - "&7Онлайн: &f%online%"
+    footer:
+      - "&7Ты в: &f%world%"
+      - "&8/games — миры, /profile — профиль"
+
+  #spawn: # задаётся командой /oc setspawn
+  #  x: 1
+  #  y: 60
+  #  z: 3
+  #  yaw: 20   # поворот по горизонтали
+  #  pitch: 25 # наклон по вертикали
+
+#
+# Экономика нужна для:
+# - награды владельцу мира за /like;
+# - денег владельцу, когда игрок покупает у него предмет;
+# - списания денег при покупке у торговца.
+#
+# Нужен плагин Vault: https://www.spigotmc.org/resources/vault.34315/
+# Баланс можно смотреть и выдавать через EssentialsX.
+#
+economy:
+  # Тип экономики:
+  #   internal — своя валюта OpenCreative++ (не нужны Vault и EssentialsX)
+  #   auto     — Vault, если он установлен, иначе своя
+  #   vault    — только Vault
+  #   none     — экономика выключена
+  type: internal
+
+  # Своя валюта (internal / auto без Vault).
+  currency:
+    # Как называется (в сообщениях: «Баланс: 120 монет»).
+    name: "монет"
+    # Значок рядом с числом.
+    symbol: "⛁"
+    # Сколько монет у нового игрока.
+    starting-balance: 100
+
+  # /pay — переводы между игроками.
+  pay:
+    min: 1
+    cooldown-seconds: 5
+
+  # Как зарабатывать. 0 — выключить способ.
+  rewards:
+    # Раз в сутки за вход на сервер.
+    daily-bonus: 50
+    # Владельцу мира за каждого нового посетителя (один раз с игрока).
+    new-visitor: 3
+    # За игру в чужих мирах: каждые N активных минут (игрок двигался), не больше daily-limit в день.
+    playtime:
+      minutes: 10
+      amount: 5
+      daily-limit: 100
+
+#
+# Резервные копии миров: plugins/OpenCreativePP/backups/<ID мира>/.
+# Владелец мира: /backups — список копий, «Создать сейчас», откат к любой копии.
+# Перед откатом автоматически делается копия текущего состояния.
+# Админ: /backups <ID> — копии любого мира, /backups <ID> create — создать (можно из консоли).
+#
+backups:
+  # Включить бэкапы.
+  enabled: true
+  # Раз в сколько часов копировать миры, где была активность.
+  interval-hours: 6
+  # Сколько копий хранить на мир (старые удаляются).
+  keep: 5
+  # Не сохранять копию больше этого размера (МБ). 0 — без ограничения.
+  max-size-mb: 200
+  # Как часто владелец может делать копию вручную (минуты).
+  manual-cooldown-minutes: 10
+
+#
+# Сообщения. Все тексты лежат в папке locales/.
+# Полностью сбросить тексты на стандартные: /oc resetlocale
+#
+messages:
+  # Язык: ru, en, ua
+  locale: ru
+
+  # Название сервера в титле и сообщении лобби. Формат MiniMessage (https://webui.advntr.dev/).
+  branding: "<white>OpenCreative<color:#74D3FF>++"
+
+  # Префикс многих сообщений.
+  prefix: "&6 Миры &8| &f"
+
+  # Информация о плагине по команде /oc. Авторы OpenCreative+ указаны по условиям лицензии AGPL.
+  version: "&f \n &fOpenCreative<color:#74D3FF>++ &3%version% &7— форк Open<gradient:#dbdbdb:#A3E2FF>Creative</gradient><color:#74D3FF>+\n &f%codename% \n \n &fАвторы OpenCreative+: &7McChicken Team, onn512, pawsashatoy, LWJENNI, HACKERPRO17, liventmst, logiklop, 70N77U, kalienda, Renzotom\n &fПереводчики: &7initzero, Nagibator6000Lol, DrakesWeb, kogtyv, Senmpai333 \n \n <click:open_url:'https://gitlab.com/eagles-creative/opencreative'><color:#e08e2f><hover:show_text:'Исходный код оригинала открыт (GNU AGPL v3). Нажми, чтобы открыть GitLab.'>[Исходный код]</hover></color></click> <click:open_url:'https://mcdiamondfire.com'><hover:show_text:'Режим <dark_aqua>Creative</dark_aqua><dark_purple>+</dark_purple> вдохновлён сервером <color:#4f95ff>DiamondFire</color>.'><color:#4f95ff>[DiamondFire]</color></hover></click>\n &cOpenCreative+ (C) McChicken Studio 2017-2026\n &c"
+
+  # Глобальный чат: ! в начале сообщения или /cc.
+  cc-prefix: "&6 Глобальный &8| &7"
+
+  # Формат глобального чата. Работают PAPI-плейсхолдеры и MiniMessage.
+  cc-chat: "%cc-prefix%&7%player%&7: %message%"
+
+  # Формат чата в мире. Работают PAPI-плейсхолдеры и MiniMessage.
+  world-chat: "&7 %player% &8» &f%message%"
+
+  # Чат других миров для модераторов (/oc spy enable).
+  world-chat-spy: "&8 (%world%) &7%player% &8» &f%message%"
+
+  # Предупреждать игрока, что он пишет в мире, где больше никого нет.
+  notify-no-players-around: true
+
+  # Скрывать сообщения игрока, когда он вводит в чат поиск мира, название/описание
+  # мира или модуля, ник или ID для передачи владения.
+  cancel-chat-on-confirmation: false
+
+  # Обрабатывать чат плагином. Если стоит свой чат-менеджер (ChatControl...) — false.
+  handle-world-chat: true
+
+  # Отключить глобальный чат (/cc и !).
+  disable-creative-chat: false
+
+  # Писать в консоль серьёзные ошибки.
+  critical-errors: true
+
+  # Писать в консоль предупреждения.
+  warnings: true
+
+  # Писать в консоль «не найдено сообщение в локализации».
+  not-found: false
+
+  # Писать в консоль «[GRIEF: ID] Подозрительные изменения от игрока».
+  grief-stats: true
+
+  # Писать в консоль «[SIGN: ID] Табличку изменил игрок».
+  sign-edits: true
+
+  #
+  # Сообщения, которые /oc resetlocale НЕ сбросит (если ты их красиво оформил).
+  #   /oc ignoremessage путь.сообщения    — защитить
+  #   /oc unignoremessage путь.сообщения  — снять защиту
+  #
+  do-not-reset:
+    - "path.of-the-message"
+    #- "creating-world.welcome"
+
+#
+# Конкурсы построек. Создаёт админ:
+#   /contest create <название>   — черновик (значения ниже — по умолчанию)
+#   /contest theme <тема>        /contest generator <flat|empty|water|desert...>
+#   /contest size <блоков>       /contest time <минут стройки> <минут голосования>
+#   /contest reward <место> <монет>
+#   /contest start  — начать стройку     /contest vote — досрочно к голосованию
+#   /contest finish — подвести итоги     /contest cancel — отменить     /contest info
+# Игроки: /contest или кнопка в компасе — получить отдельный мир, после стройки — голосовать 1–5★.
+# Конкурсные миры не занимают слоты миров игрока; после конца стройки менять их нельзя.
+#
+contests:
+  generator: "flat"
+  world-size: 64
+  build-minutes: 1440
+  vote-minutes: 360
+  # Монеты за 1, 2, 3 место.
+  rewards: [1000, 500, 250]
+  # Команды от консоли победителям (%player%), например выдача привилегии.
+  place-commands:
+    "1": []
+    "2": []
+    "3": []
+  # Сколько голосов нужно работе, чтобы попасть в итоги.
+  min-votes: 1
+  # Мир победителя добавить в рекомендуемые.
+  winners-to-recommended: true
+
+#
+# Discord: сообщения о событиях сервера в канал через вебхук.
+# Канал → Настройки → Интеграции → Вебхуки → «Новый вебхук» → «Копировать URL».
+#
+discord:
+  # Пусто — выключено.
+  webhook-url: ""
+  # Имя бота в сообщениях.
+  name: "OpenCreative++"
+  # Что отправлять.
+  events:
+    new-world: true
+    contest: true
+    market: true
+
+#
+# Логи в консоли.
+#
+logs:
+  # Большой баннер при запуске и выключении. false — одна строка-сводка.
+  startup-banner: false
+
+  # Проверять обновления OpenCreative+ на Hangar.
+  # По умолчанию выключено: OpenCreative++ — отдельный форк, версии оригинала ему не подходят.
+  check-updates: false
+
+#
+# Разрешённые сайты для ссылок, которые вводят игроки
+# (защита от сайтов, ворующих IP).
+#
+allowed-links:
+  # Для действия «Установить ресурспак».
+  resource-pack:
+    - "dropbox.com"
+    - "drive.google.com"
+    - "cdn.modrinth.com"
+
+#
+# Кодинг — программирование игр блоками внутри мира.
+#
+#   /dev   — перейти в мир кода
+#   /play  — запустить код
+#   /build — остановить код и строить
+#
+coding:
+
+  # Включить кодинг.
+  enabled: true
+
+  # Старое меню выбора блоков кода (из прошлых версий).
+  old-selection-menu: false
+
+  # Как строятся платформы (этажи) кода для новых миров.
+  #
+  # Не меняй, если на сервере уже есть миры!
+  # Проверить генератор в своём мире: /world platformer [ID]
+  #
+  # horizontal — платформы рядом друг с другом
+  # vertical   — этажи друг над другом
+  # legacy     — этажи с видимой границей мира
+  #
+  # Сколько этажей можно в мире — groups.yml → limits.coding-platforms
+  platforms-generator: "horizontal"
+
+  #
+  # Расстояние между платформами. Не меняй, если на сервере уже есть миры!
+  #
+  platforms-spacing:
+
+    # По высоте между этажами (vertical).
+    vertical: 5
+
+    # По высоте между этажами (legacy).
+    legacy: 10
+
+    # По X/Z между платформами (horizontal).
+    horizontal: 102
+
+  #
+  # Вырез сбоку этажей (vertical), чтобы удобнее перелетать между ними.
+  # Не меняй, если на сервере уже есть миры!
+  #
+  platforms-vertical-notch:
+
+    # Включить вырез.
+    enabled: false
+
+    # Ширина выреза от края по X.
+    width: 3
+
+  # Не отправлять в чат мира сообщение, которым игрок задаёт значение текста, числа,
+  # вектора, переменной, зелья, цвета (держа предмет в руке).
+  cancel-chat-on-value-set: false
+
+  # Отменять действие, если его цель (существо) не в этом мире.
+  # По умолчанию false, чтобы работали действия, которым существо не нужно.
+  ignore-actions-if-entity-not-in-world: false
+
+  # Сохранять копии codeScript.yml в plugins/OpenCreativePP/history/.
+  # Нужно, только чтобы найти скрипт, который лагает.
+  save-scripts-history: false
+
+  #
+  # Отключить отдельные блоки кода, если они не нужны или нагружают сервер:
+  # disabled-actions:
+  #   - "world_set_block_type"
+  #
+  disabled-events: []
+  disabled-actions: []
+  disabled-conditions: []
+
+  #
+  # Генерация кода нейросетью по описанию:
+  #   /env make когда игрок кликает ПКМ по магме, выдать случайный предмет
+  #
+  # Нейросеть может ошибаться в коде. Нужен API-ключ:
+  #   ChatGPT    — https://platform.openai.com/api-keys
+  #   Gemini     — https://aistudio.google.com/app/apikey
+  #   OpenRouter — https://openrouter.ai/settings/keys
+  # Сервисы дают пробный период, дальше обычно платно.
+  #
+  prompt-handler:
+
+    # none — выключено, gemini, chatgpt, openrouter
+    type: "none"
+
+    # Модель:
+    #   ChatGPT    — "gpt-4o-mini"
+    #   Gemini     — "gemini-2.5-flash"
+    #   OpenRouter — "google/gemini-2.5-flash"
+    model: "gemini-2.5-flash"
+
+    #
+    # Секретный ключ. НИКОМУ не показывай и не отправляй config.yml с ключом!
+    #
+    token: "insert-secret-api-key-here-but-do-not-share-it-with-others"
+
+    # Сколько секунд максимум ждать ответа.
+    timeout: 120
+
+    # Максимум исполнителей (событий) в сгенерированном коде.
+    executors-limit: 10
+
+#
+# Защита от «плохих» предметов: такие предметы исправляются
+# или удаляются из инвентаря.
+#
+item-fixer:
+
+  # Включить.
+  enabled: true
+
+  # Максимальная длина имени предмета.
+  display-name-max-length: 64
+
+  # Максимальная длина строки описания (lore).
+  lore-line-max-length: 100
+
+  # Максимум строк в описании.
+  lore-lines-max-amount: 25
+
+  # Максимальный уровень зачарования.
+  max-enchantment-level: 10
+
+  # Сколько «тяжёлых» предметов (контейнеры, книги) можно внутри контейнера.
+  container-big-items-max-amount: 3
+
+  # Максимум страниц в книге.
+  books-pages-max-amount: 50
+
+  # Убирать модификаторы атрибутов (размер, скорость, сила).
+  remove-attribute-modifiers: true
+
+  # Убирать кликабельные элементы из книг.
+  remove-clickable-in-books: true
+
+  # Убирать данные из яиц призыва.
+  remove-custom-spawn-eggs: true
+
+  # Убирать яйца эндер-дракона и визера.
+  remove-boss-spawn-eggs: true
+
+  # Максимальная длина имени существа.
+  entity-name-max-length: 48
+
+  # Максимальный размер persistent data container.
+  persistent-data-max-size: 2048
+
+  # Сколько существ может хранить блок (улей).
+  entities-max-amount: 3
+
+  # Очищать команды в предметах командных блоков.
+  clear-command-blocks-data: true
+
+#
+# Защита от «плохих» сценариев в мирах.
+#
+world-fixer:
+
+  #
+  # Если на сервере выключены достижения (spigot.yml: disable-saving: true, disabled: ['*']),
+  # игроки не открывают рецепты. Здесь можно открыть все рецепты.
+  #
+  # none     — не открывать
+  # crafting — при открытии верстака
+  # join     — при входе на сервер
+  #
+  give-all-recipes-on: none
+
+  multiple-vehicle-placement:
+    # Нельзя ставить вагонетку на рельсы, где уже есть вагонетка.
+    enabled: true
+
+  vehicle-collisions:
+    # Ломать вагонетки, которые слишком часто сталкиваются.
+    enabled: true
+
+    # Максимум столкновений за последние 0.5 секунды.
+    max-collisions: 100
+
+  bad-entities-in-air:
+    # Удалять стойки, транспорт и снаряды, которые летят кучей рядом друг с другом.
+    enabled: true
+
+#
+# Команды на события. Например, сообщение в Discord через DiscordSRV.
+#
+commands:
+  onLobby: # вход в лобби (%player%)
+    first: # имя команды (любое)
+      command: "" # команда без /
+      delay: 0 # задержка в тиках (20 тиков = 1 секунда)
+      console: true # true — от консоли, false — от игрока
+  onPlanetConnect: {} # вход в мир: %planet% %player%
+  onPlanetDisconnect: {} # выход из мира: %planet% %player%
+  onPlanetCreation: { } # создание мира: %planet% %player% %generator% %environment% %structures% %seed%
+  onWorldChat: {} # чат в мире: %world% %player% %message% %formatted%
+  onCreativeChat: {} # глобальный чат: %player% %message% %formatted%
+  onMaintenanceStart: {} # начало тех. работ: %player%
+  onMaintenanceEnd: {} # конец тех. работ: %player%
+  onWatchdogServerOverload: {} # перегрузка сервера: %tps% %freememory% %freestorage% %planets% %players%
+
+#
+# Требования к тому, что вводит игрок. Если не выполнено —
+# настройка мира не меняется.
+#
+requirements:
+  world-creation:
+    played-seconds: 30       # сколько секунд нужно отыграть на сервере, чтобы создать мир
+  world-reputation:
+    creation-seconds: 300    # через сколько секунд после создания мир можно лайкать
+  world-name:
+    min-length: 4
+    max-length: 30
+  world-description:
+    min-length: 4
+    max-length: 256
+  world-custom-id:
+    pattern: "^[a-zA-Zа-яА-Я0-9_]+$"
+    min-length: 2
+    max-length: 16
+  module-name:
+    min-length: 4
+    max-length: 30
+  module-description:
+    min-length: 4
+    max-length: 256
+
+#
+# Веб-сервер плагина (нужен для скачивания миров).
+#
+web:
+  # Сайт со списком миров: лучшие, сейчас играют, новые, страница каждого мира, текущий конкурс.
+  # Открыть: http://<IP сервера>:<port>/   JSON для своих сайтов/ботов: /api/worlds, /api/contest
+  # Показываются только открытые (публичные) миры.
+  site:
+    enabled: true
+    # Отдельный порт сайта (должен быть открыт, если сайт нужен из интернета).
+    port: 22913
+    # Заголовок сайта.
+    title: "OpenCreative++"
+    # Адрес сервера для игроков (показывается вверху), например "play.myserver.ru". Пусто — не показывать.
+    server-address: ""
+
+  # Порт для скачивания миров (/world download). Он должен быть ОТКРЫТ.
+  port: 22912
+
+  # Адрес в сообщениях игроку, например "yourserver.com".
+  # Пусто — IP сервера и ":порт".
+  display-link: ""
+  use-https: false
+
+  #
+  # Скачивание мира командой /world download.
+  #
+  # Плагин копирует папки мира (строительство и код), сжимает в архив
+  # в plugins/OpenCreativePP/temp/ и отправляет игроку ссылку. После скачивания
+  # или по истечении времени архив удаляется.
+  #
+  downloader:
+
+    # Включить.
+    enabled: false
+
+    # Максимальный размер мира в МБ.
+    max-size: 30
+
+    # Сколько секунд хранить архив.
+    storing-time: 60
+
+    # Включать в архив мир кода, скрипт и переменные.
+    include-code: true
+
+#
+# Эксперименты — нестабильные функции в разработке.
+# Внимание: некоторые могут повредить миры! Не включай без нужды.
+#
+experiments:
+  # Профили игроков.
+  wanders: false
+  # Копирование миров.
+  world_downloader: false
+  # Загрузка кода с сайта.
+  code_downloader: false
+
+#
+# Watchdog следит за TPS, памятью и диском и ограничивает загрузку миров,
+# когда сервер не справляется.
+#
+# Состояния:
+#   Fine     — всё работает
+#   Not Okay — можно заходить в загруженные миры, но нельзя загружать новые и запускать код
+#   Very bad — все миры выгружаются, заходить нельзя
+#
+# Проверить: /oc stability
+#
+watchdog:
+  # Включить.
+  enabled: false
+
+  # Запрещать создание миров и кикать в лобби при перегрузке.
+  limit-operations-when-unstable: false
+
+  # Телепортировать всех в лобби и выгружать миры при перегрузке.
+  unload-worlds-when-unstable: false
+
+#
+# Технические работы: выгружает все миры и запрещает игрокам без
+# админских прав загружать и создавать миры.
+#
+#   /oc maintenance start 30
+#   /oc maintenance end
+#
+maintenance: false
+
+#
+# Режим отладки: больше служебных сообщений и полные стектрейсы ошибок в консоли.
+# Нужен для разработки, на обычном сервере не включай.
+#
+debug: false
+
+#
+# ID последнего созданного мира. Новый мир получает этот номер + 1.
+# Лучше не менять.
+#
+last-world-id: 0

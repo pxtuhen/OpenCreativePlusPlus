@@ -1,0 +1,56 @@
+# Build output
+build/
+out/
+target/
+bin/
+*.class
+dependency-reduced-pom.xml
+production.tmp
+
+# Gradle (gradle/wrapper/gradle-wrapper.jar is needed by ./gradlew and stays)
+.gradle/
+.kotlin/
+local.properties
+!gradle/wrapper/gradle-wrapper.jar
+
+# Libraries and jars
+libs/
+lib/
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+.run/
+
+# Temp files of build.sh and the JVM
+.tmp/
+tmp/
+hs_err_pid*.log
+replay_pid*.log
+*.log
+
+# Local test server
+server/
+run/
+test-server/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+.factorypath
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# AI agents and local notes
+AGENTS.md
+CLAUDE.md
+.claude/
