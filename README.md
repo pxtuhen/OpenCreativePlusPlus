@@ -16,6 +16,8 @@ code mini-games with blocks and play them with friends.
 
 ### [Original project](https://gitlab.com/eagles-creative/opencreative) - [Installation](#installation) - [Commands](#commands) - [Permissions](#permissions) - [Changelog](CHANGELOG)
 
+![Screenshot](https://i.imgur.com/4jzB4F9.png)
+
 </div>
 
 > **OpenCreative++ is an unofficial fork** of [OpenCreative+](https://gitlab.com/eagles-creative/opencreative)
@@ -106,18 +108,68 @@ And this is what **OpenCreative++ adds**:
 
 ## Usage
 
+> Screenshots and videos below are from [OpenCreative+](https://gitlab.com/eagles-creative/opencreative) by McChicken Studio.
+> Menus of OpenCreative++ look a bit different (new compass tabs, star ratings, upgrades).
+
 ### Creating a world
 Players create worlds from the compass with one of the generators (plains, flat, ocean, void and five extra flats).
 World size depends on the player's group in `groups.yml` and can be increased with `/upgrades`.
+
+![](https://i.imgur.com/sID0dxv.png)
+
+▶ [World creation video](https://gitlab.com/eagles-creative/opencreative/-/wikis/uploads/82d2118f4aee556c146a22b1419ed0df/WorldCreation.mp4)
 
 ### Browsing worlds
 Open the compass (hotbar slot 5). Left click — join, right click — add to favorites, shift + left click — moderation (admins).
 In the Search tab click the tab again: left click — by name and description, right click — by ID, shift + left click — by owner.
 Any chat input request expires after 60 seconds; type `cancel` to cancel it.
 
+![](https://i.imgur.com/mL6FS4o.png)
+
+### World's settings
+Every owner can change the name, description, category, ID, flags and icon of the world.
+Backups, upgrades and datapacks are also available from the world settings.
+
+![](https://i.imgur.com/iMJjFh0.png)
+
+▶ [World settings video](https://gitlab.com/eagles-creative/opencreative/-/wikis/uploads/9a1cfb155d1391f4cba17be23a1fc13a/WorldSettings.mp4)
+
 ### Coding
 Players build code with coding blocks in the developer world (`/dev`) and run it with `/play`.
 Code is saved into `codeScript.yml` of the world. Finished code can be saved as a module and shared on `/market`.
+
+![](https://i.imgur.com/1SkIjhv.png)
+
+▶ [Developer world video](https://gitlab.com/eagles-creative/opencreative/-/wikis/uploads/1eda4a8c0ee3dcdb4b9a23954fa6d7e6/DevelopersWorld.mp4)
+
+Coding blocks are parsed into `codeScript.yml`. Example: send a message "Hello World" on join.
+
+```yaml
+code:
+  blocks:
+    exec_block_4_1:
+      category: EVENT_PLAYER
+      type: PLAYER_JOIN
+      actions:
+        action_block1:
+          category: PLAYER_ACTION
+          type: PLAYER_SEND_MESSAGE
+          arguments:
+            type:
+              type: TEXT
+              value: join-spaces
+            messages:
+              type: LIST
+              value:
+                '1':
+                  type: TEXT
+                  value:
+                    name: Hello
+                '2':
+                  type: TEXT
+                  value:
+                    name: World
+```
 
 ## Installation
 
